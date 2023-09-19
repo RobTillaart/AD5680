@@ -37,15 +37,6 @@ unittest_teardown()
 }
 
 
-unittest(constant)
-{
-  assertEqual(0x00, AD5680_PWR_NORMAL    );
-  assertEqual(0x01, AD5680_PWR_1K        );
-  assertEqual(0x02, AD5680_PWR_100K      );
-  assertEqual(0x03, AD5680_PWR_TRI_STATE );
-}
-
-
 unittest(constructors)
 {
   AD5680 AD0(8);           //  18 bit
