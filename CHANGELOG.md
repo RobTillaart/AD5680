@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - fix SPI_MODE to SPI_MODE0 for hardware SPI.
 - fix **updateDevice()**
 - add **AD5680_triangle.ino** example
+- add **AD5680_sawtooth.ino** example
 
 
 ## [0.1.0] - 2023-09-19
