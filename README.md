@@ -82,7 +82,7 @@ please read datasheet of the ADC first to get optimal speed.
 - **bool usesHWSPI()** returns true if HW SPI is used.
 
 
-  ## Performance
+## Performance
 
 Measurements with AD5680_demo.ino - setValue() most important.
 (numbers are rounded).

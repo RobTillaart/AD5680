@@ -3,15 +3,15 @@
 //  AUTHOR: Rob Tillaart
 // PUPROSE: test basic behaviour and performance
 
-
+#include "SPI.h"
 #include "AD5680.h"
 
-// SPIClass * mySPI = new SPIClass(HSPI);
-// SPIClass * mySPI = new SPIClass(VSPI);
 
-AD5680 AD16_HW(8, &SPI);
-//  AD5680 AD16_HW(8, mySPI);
-AD5680 AD16_SW(5, 6, 7);
+//  HSPI uses default   SCLK=14, MISO=12, MOSI=13, SELECT=15
+//  VSPI uses default   SCLK=18, MISO=19, MOSI=23, SELECT=5
+SPIClass * myspi = new SPIClass(VSPI);
+AD5680 AD16_HW(5, myspi);
+AD5680 AD16_SW(15, 13, 14);
 
 
 void setup()
@@ -38,8 +38,8 @@ void loop()
   uint32_t start = micros();
   for (uint32_t i = 0; i < 1000; i++)
   {
-     AD16_HW.setValue(i);
-     // AD16_SW.setValue(i);
+     // AD16_HW.setValue(i);
+     AD16_SW.setValue(i);
   }
   uint32_t duration = micros() - start;
   Serial.print(duration);
