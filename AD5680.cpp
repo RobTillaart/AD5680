@@ -41,8 +41,8 @@ void AD5680::begin()
 
   if(_hwSPI)
   {
-    mySPI->end();
-    mySPI->begin();
+    _mySPI->end();
+    _mySPI->begin();
     delay(1);
   }
   else  //  SOFTWARE SPI
@@ -134,11 +134,11 @@ void AD5680::updateDevice(uint32_t value)
   digitalWrite(_select, LOW);
   if (_hwSPI)
   {
-    mySPI->beginTransaction(_spi_settings);
-    mySPI->transfer(a);
-    mySPI->transfer(b);
-    mySPI->transfer(c);
-    mySPI->endTransaction();
+    _mySPI->beginTransaction(_spi_settings);
+    _mySPI->transfer(a);
+    _mySPI->transfer(b);
+    _mySPI->transfer(c);
+    _mySPI->endTransaction();
   }
   else  //  Software SPI
   {
