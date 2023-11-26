@@ -56,10 +56,11 @@ Note the order of the parameters of the software SPI constructor has changed in 
 - **AD5680(uint8_t slaveSelect, SPIClassRP2040 \* mySPI = &SPI)** constructor HW SPI (RP2040 specific). Sets internal value to zero.
 - **AD5680(uint8_t slaveSelect, SPIClass \* mySPI = &SPI)** constructor HW SPI. 
 Sets internal value to zero.
-- **AD5680(uint8_t slaveSelectuint8_t spiData, uint8_t spiClock)** constructor SW SPI.
+- **AD5680(uint8_t slaveSelect, uint8_t spiData, uint8_t spiClock)** constructor SW SPI.
 sets SW SPI.
 Sets internal value to zero.
-- **begin()** initializes the SPI and sets internal state.
+- **void begin()** initializes the SPI and sets internal state.
+- **uint8_t getType()** returns 18 (for now).
 
 
 ### Set DAC

@@ -6,7 +6,11 @@
 
 #include "AD5680.h"
 
+// SPIClass * mySPI = new SPIClass(HSPI);
+// SPIClass * mySPI = new SPIClass(VSPI);
+
 AD5680 AD16_HW(8, &SPI);
+//  AD5680 AD16_HW(8, mySPI);
 AD5680 AD16_SW(5, 6, 7);
 
 
