@@ -28,14 +28,14 @@ Feedback, issues, improvements are welcome.
 Please file an issue on GitHub.
 
 
-#### 0.3.0 Breaking change
+### 0.3.0 Breaking change
 
 Version 0.3.0 introduced a breaking change to improve handling the SPI dependency.
 The user has to call **SPI.begin()** or equivalent before calling **AD.begin()**.
 Optionally the user can provide parameters to the **SPI.begin(...)**
 
 
-#### 0.2.0 breaking change
+### 0.2.0 breaking change
 
 The version 0.2.0 has breaking changes in the interface. 
 The essence is removal of ESP32 specific code from the library. 
@@ -45,7 +45,7 @@ Also it makes the library a bit simpler to maintain.
 Note the order of the parameters of the software SPI constructor has changed in 0.2.0.
 
 
-#### Related
+### Related
 
 - https://github.com/RobTillaart/AD5620 (single channel, 12 + 14 bit)
 - https://github.com/RobTillaart/AD5660 (single channel, 16 bit)
@@ -88,7 +88,7 @@ Might return a slightly different value than **setPercentage()** due to
 rounding errors.
 
 
-#### SPI 
+### SPI 
 
 - **void setSPIspeed(uint32_t speed)** sets SPI clock in **Hz**,
 please read datasheet of the ADC first to get optimal speed.
@@ -102,7 +102,7 @@ Measurements with AD5680_demo.ino - setValue() most important.
 (numbers are rounded).
 
 |  version  |  board  |  clock    |  SPI  |  samples / second  |  Notes  |
-|:---------:|:-------:}:---------:|:-----:}:------------------:|:--------|
+|:---------:|:-------:|:---------:|:-----:|:------------------:|:--------|
 |   0.1.1   |  UNO    |   16 MHz  |  HW   |    53500           |
 |   0.1.1   |  UNO    |   16 MHz  |  SW   |     2800           |
 |   0.1.1   |  ESP32  |  240 MHz  |  HW   |    91000           |  1
