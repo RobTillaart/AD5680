@@ -45,6 +45,18 @@ Also it makes the library a bit simpler to maintain.
 Note the order of the parameters of the software SPI constructor has changed in 0.2.0.
 
 
+### Compatibles
+
+Overview of related devices, number of bits, setValue range and indicative LSB
+
+|  device  |  bits  |  range      |  % step size  |   LSB @ 5V  |  notes  |
+|:--------:|:------:|:-----------:|:-------------:|:-----------:|:-------:|
+|  AD5620  |   12   |  0..4095    |     0.025     |  1.221 mV   |  AD5620 library
+|  AD5640  |   14   |  0..16383   |     0.0065    |  0.3053 mV  |  AD5620 library
+|  AD5660  |   16   |  0..65535   |     0.0017    |  0.0763 mV  |  AD5660 library
+|  AD5680  |   18   |  0..262143  |     0.0005    |  19.07 uV   |  AD5680 library
+
+
 ### Related
 
 - https://github.com/RobTillaart/AD5620 (single channel, 12 + 14 bit)
