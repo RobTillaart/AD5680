@@ -28,6 +28,11 @@ Feedback, issues, improvements are welcome.
 Please file an issue on GitHub.
 
 
+### 0.4.0 Breaking change
+
+SPI mode is set to SPImode1 to be in line with AD5620 (tested) and AD5660.
+
+
 ### 0.3.0 Breaking change
 
 Version 0.3.0 introduced a breaking change to improve handling the SPI dependency.
@@ -91,16 +96,21 @@ Sets internal value to zero.
 - **bool setValue(uint32_t value)** set value to the output immediately, 
 effectively a prepare + update in one call.
 Returns false if value out of range.
-- **uint32_t getValue()** returns set value 0..262143 (from cache).
+- **uint32_t getValue()** returns set value from cache.
 At power up the AD5680 will be reset to 0 (== 0 volt).
-- **bool setPercentage(float percentage)** sets the output as a percentage 0..100.
-If percentage is out of range, it is not set and the function returns false.
+- **uint32_t getMaxValue()** returns 262143 for AD5680.
+- **bool setPercentage(float percentage)** sets the output as a percentage 0..100%.
+If percentage is out of range, it is **not** set and the function returns false.
+The stepsize is about 0.001% for the AD5680.
 - **float getPercentage()** returns percentage, wrapper around **getValue()**.
 Might return a slightly different value than **setPercentage()** due to 
-rounding errors.
+rounding math.
+At power up the function will return 0 as default value.
 
 
-### SPI 
+### SPI
+
+Adjust the performance of the SPI port.
 
 - **void setSPIspeed(uint32_t speed)** sets SPI clock in **Hz**,
 please read datasheet of the ADC first to get optimal speed.
@@ -110,22 +120,25 @@ please read datasheet of the ADC first to get optimal speed.
 
 ## Performance
 
-Measurements with AD5680_demo.ino - setValue() most important.
-(numbers are rounded).
+Measurements with AD5680_demo.ino - performance of **setValue()** is the 
+most important. The numbers are rounded and indicative, other boards might 
+produce different numbers.
 
-|  version  |  board  |  clock    |  SPI  |  samples / second  |  Notes  |
-|:---------:|:-------:|:---------:|:-----:|:------------------:|:--------|
-|   0.1.1   |  UNO    |   16 MHz  |  HW   |    53500           |
-|   0.1.1   |  UNO    |   16 MHz  |  SW   |     2800           |
-|   0.1.1   |  ESP32  |  240 MHz  |  HW   |    91000           |  1
-|   0.1.1   |  ESP32  |  240 MHz  |  SW   |   111000           |
+|  version  |  board  |  clock    |  SPI  |  calls / sec  |  Notes  |
+|:---------:|:-------:|:---------:|:-----:|:-------------:|:--------|
+|   0.1.1   |  UNO    |   16 MHz  |  HW   |    53500      |
+|   0.1.1   |  UNO    |   16 MHz  |  SW   |     2800      |
+|   0.1.1   |  ESP32  |  240 MHz  |  HW   |    91000      |  1
+|   0.1.1   |  ESP32  |  240 MHz  |  SW   |   111000      |
 
 
 1. ESP32 HW is equal performant for HSPI and VSPI. 
    Unknown why HW SPI is 20% slower than SW SPI (transaction overhead?)
 
-50000 - 100000 samples per second means that a 1 KHz wave can be 
-constructed with 50-100 values per period.
+50000 - 100000 calls per second means that a 1 KHz wave can be 
+constructed with 50-100 values per period (max).
+
+Please share your performance data, open an issue to report.
 
 
 ## Future
@@ -133,8 +146,9 @@ constructed with 50-100 values per period.
 #### Must
 
 - improve documentation
-- get test hardware
+- get hardware
 - test the library
+- keep in sync with AD5620/60
 
 #### Should
 
